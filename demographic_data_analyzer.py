@@ -2,11 +2,14 @@ import pandas as pd
 
 
 def calculate_demographic_data(print_data=True):
+    print_data = True
     # Read data from file
-    df = None
+    df = pd.read_csv("./adult.data.csv")
 
     # How many of each race are represented in this dataset? This should be a Pandas series with race names as the index labels.
-    race_count = None
+    helper = df[["age","race"]].groupby("race").count()
+    race_count = helper.rename(columns ={"age":"race"} )["race"]
+    
 
     # What is the average age of men?
     average_age_men = None
